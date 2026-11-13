@@ -35,9 +35,15 @@ public class UseCaseLock {
     public UseCaseLock() {
     }
 
+    // Separate guards distinguish an unacquired lock from one without expiration.
+    @SuppressWarnings("PMD.SimplifyBooleanReturns")
     public boolean isLocked(Instant now) {
-        if (lockedAt == null) return false;
-        if (expiresAt == null) return true;
+        if (lockedAt == null) {
+            return false;
+        }
+        if (expiresAt == null) {
+            return true;
+        }
         return expiresAt.isAfter(now);
     }
 

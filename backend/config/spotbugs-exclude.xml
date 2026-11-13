@@ -7,4 +7,7 @@
 
      Unlike the baseline, this file may grow, but every entry is a reviewed decision. -->
 <FindBugsFilter>
+  <!-- JPA entities expose live associations for managed updates, and Spring components retain shared
+       injected dependencies. These rules also flag DTOs; review DTO collection ownership in code review. -->
+  <Match><Bug pattern="EI_EXPOSE_REP,EI_EXPOSE_REP2"/></Match>
 </FindBugsFilter>
